@@ -29,7 +29,7 @@ public class AddEditDeleteBookController {
 
     @RequestMapping(value = "/doEditBook", method = RequestMethod.POST)
     public String doEditBook(@RequestBody Book book) {
-
+        bookService.editBookById(book);
         return "pages/books.html";
     }
 

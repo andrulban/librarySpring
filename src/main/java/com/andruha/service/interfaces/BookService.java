@@ -18,7 +18,7 @@ public interface BookService {
     List<Book> getBooksLetter(String letter);
     Book getBookById(long id);
     void deleteBookById(long id);
-    void editBookById(long id);
+    void editBookById(Book book);
     void createBook(Book book);
 
 }

@@ -53,8 +53,17 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void editBookById(long id) {
-        //bookRepository
+    public void editBookById(Book book) {
+        Book dbBook = bookRepository.getBookById(book.getId());
+        dbBook.setPageCount(book.getPageCount());
+        dbBook.setAuthor_id(book.getAuthor_id());
+        dbBook.setGenre_id(book.getGenre_id());
+        dbBook.setId(book.getId());
+        dbBook.setIsbn(book.getIsbn());
+        dbBook.setName(book.getName());
+        dbBook.setPublisher_id(book.getPublisher_id());
+        dbBook.setPublish_year(book.getPublish_year());
+        bookRepository.saveAndFlush(dbBook);
     }
 
     @Override

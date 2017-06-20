@@ -22,7 +22,7 @@
             $.ajax({
                 url: '/deleteBook/' + id,
                 success: function (data) {
-                    bookRepository.delete(id);
+                    showBooks('/getAll');
                 }
             });
         }
@@ -203,14 +203,8 @@
 <div class="header">
     <div class="header-wrap">
 
-        <div class="social">
-            <a href="#"><img src="images/vk.jpg" width="16" height="16" alt=""/></a>
-            <a href="#"><img src="images/facebook.jpg" width="16" height="16" alt=""/></a>
-        </div>
-
         <div class="aut">
-            <p>User</p>
-            <a href="#">Exit</a>
+            <a href="/logout">Exit</a>
         </div>
     </div>
 </div>
@@ -218,20 +212,12 @@
 <div id="wrap">
 
     <div class="logo">
-        <a href="#"><img src="images/logo.png" width="211" height="46" alt=""/></a>
+        <a href="/books"><img src="images/libraryLogo.png" width="180" height="100" alt=""/></a>
     </div>
 
     <div class="menu">
-        <ul>
-            <li><a href="#">Новинки</a></li>
-            <li><a href="#">Популярные</a></li>
-            <li><a href="#">О компании</a></li>
-            <li><a href="#">Контакты</a></li>
-            <li><a href="#">Команда</a></li>
-        </ul>
     </div>
 
-    <a class="feedback" href="#">Обратная связь</a>
     <div class="clear"></div>
 
     <div class="search">
