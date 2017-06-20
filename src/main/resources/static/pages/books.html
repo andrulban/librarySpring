@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-wrap">
+
+        <div class="social">
+            <a href="#"><img src="images/vk.jpg" width="16" height="16" alt=""/></a>
+            <a href="#"><img src="images/facebook.jpg" width="16" height="16" alt=""/></a>
+        </div>
+
+        <div class="aut">
+            <p>User</p>
+            <a href="#">Exit</a>
+        </div>
+    </div>
+</div>
+
+<div id="wrap">
+
+    <div class="logo">
+        <a href="#"><img src="images/logo.png" width="211" height="46" alt=""/></a>
+    </div>
+
+    <div class="menu">
+        <ul>
+            <li><a href="#">Новинки</a></li>
+            <li><a href="#">Популярные</a></li>
+            <li><a href="#">О компании</a></li>
+            <li><a href="#">Контакты</a></li>
+            <li><a href="#">Команда</a></li>
+        </ul>
+    </div>
+
+    <a class="feedback" href="#">Обратная связь</a>
+    <div class="clear"></div>
+
+    <div class="search">
+        <form>
+            <input id="serchText" type="text" class="search-text" placeholder="Type name of a book"/>
+            <input type="submit" class="button-text"/>
+
+            <select>
+                <option>Name</option>
+            </select>
+
+            <input type="submit" class="button" onclick="searchBooksByName()" value="Search"/>
+        </form>
+    </div>
+    <div class="clear"></div>
+
+    <div class="nav">
+            <ul>
+                <li><a href='javascript:showBooks(/getBooksByLetter//A)'>A</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//B)">B</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//C)">C</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//D)">D</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//E)">E</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//F)">F</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//G)">G</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//H)">H</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//I)">I</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//G)">G</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//K)">K</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//L)">L</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//M)">M</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//N)">N</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//O)">O</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//P)">P</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//Q)">Q</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//R)">R</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//S)">S</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//T)">T</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//U)">U</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//V)">V</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//W)">W</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//X)">X</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//Y)">Y</a></li>
+                <li><a onclick="showBooks(/getBooksByLetter//Z)">Z</a></li>
+            </ul>
+    </div>
+
+    <!-- content -->
+    <div class="content">
+        <div class="left-menu" id="genresDiv"/>
+        <div class="clear"/>
+        <div class="right-content" id="booksDiv"/>
+    </div>
+
+    <!-- footer -->
+    <div class="footer_blank"></div>
+</div>
+<div id="footer">
+    <div class="footer-wrap">
+        <p>&#169; 2017 &#171;Andrii Tytarchuk&#187;</p>
+    </div>
+</div>
+
+<script>
+    showBooks('/getAll');
+    showAllGenres();
+
+    function searchBooksByName() {
+        showBook(document.getElementById(serchText).value);
+    }
+
+    function showAllGenres() {
+        $.ajax({
+            url: '/getAllGenres',
+            success: function (data) {
+                var rightContent = document.getElementById('genresDiv');
+
+                var ulelem = document.createElement('ul');
+                $.each(data, function (index, element) {
+                    var line = document.createElement('li');
+                    var genreHref = document.createElement('a');
+                    genreHref.innerHTML = element.genreName;
+                    genreHref.setAttribute('onclick', 'showBooks(/getBooksByGenreId//' + element.id + ')');
+                    genreHref.setAttribute('href', '/books');
+                    line.appendChild(genreHref);
+                    ulelem.appendChild(line);
+                });
+                rightContent.appendChild(ulelem);
+            }
+
+        });
+
+    }
+
+    function showBooks(url) {
+        $.ajax({
+            url: url,
+            success: function (data) {
+                var parent = document.getElementById('booksDiv');
+
+                var box_sh = document.createElement('div');
+                box_sh.setAttribute('class', 'box-sh');
+
+                var amountOfBooks = document.createElement('h1');
+                amountOfBooks.innerHTML = data.length + ' books found';
+
+
+
+                var addHref = document.createElement('a');
+                addHref.innerHTML = 'Add';
+
+                box_sh.appendChild(amountOfBooks);
+                box_sh.appendChild(addHref);
+                parent.appendChild(box_sh);
+
+
+                $.each(data, function (index, element) {
+
+                    var child = document.createElement('div');
+                    child.setAttribute('class', 'item');
+                    child.setAttribute('id', 'child');
+
+                    var info = document.createElement('div');
+                    info.setAttribute('class', 'info');
+
+                    var clear = document.createElement('div');
+                    clear.setAttribute('class', 'clear');
+
+                    var img = document.createElement('img');
+                    img.setAttribute('width', '100');
+                    img.setAttribute('height', '147');
+                    img.setAttribute('src', '/image/'+element.id);
+
+                    var titleHref = document.createElement('a');
+                    titleHref.setAttribute('class', 'title');
+                    titleHref.setAttribute('href', '/content/read?id='+element.id);
+                    titleHref.setAttribute('target', '_blank');
+
+                    var titleP = document.createElement('p');
+                    titleP.innerHTML = element.name;
+
+                    var readHref = document.createElement('a');
+                    readHref.setAttribute('class', 'mr');
+                    readHref.setAttribute('href', '/content/read?id='+element.id);
+                    readHref.setAttribute('target', '_blank');
+
+                    var downloadHref = document.createElement('a');
+                    downloadHref.setAttribute('class', 'mr');
+                    downloadHref.setAttribute('href', '/content/download?id='+element.id);
+                    downloadHref.setAttribute('target', '_blank');
+
+                    var editHref = document.createElement('a');
+                    editHref.innerHTML = 'Edit';
+                    editHref.setAttribute('class','mr')
+
+
+                    var deleteHref = document.createElement('a');
+                    deleteHref.innerHTML = 'Delete';
+                    deleteHref.setAttribute('class','delete-button')
+
+                    var printed = document.createElement('p');
+                    $.ajax({
+                        url: '/getPublisherName/' + element.publisher_id,
+                        success: function (data) {
+                            printed.innerHTML = 'Publisher:' + data;
+                        }
+                    });
+
+                    var year = document.createElement('p');
+                    year.innerHTML = 'Publishing year: ' + element.publish_year;
+
+                    var isbn = document.createElement('p');
+                    isbn.innerHTML = 'ISBN code: ' + element.isbn;
+
+                    var pages = document.createElement('p');
+                    pages.innerHTML = 'Amount of pages: ' + element.pageCount;
+
+                    var readP = document.createElement('p');
+                    readP.innerHTML = 'Read';
+
+                    var downloadP = document.createElement('p');
+                    downloadP.innerHTML = 'Download';
+
+                    var author = document.createElement('span');
+                    $.ajax({
+                        url: '/getAuthorName/' + element.author_id,
+                        success: function (data) {
+                            author.innerHTML = data;
+                        }
+                    });
+
+                    titleHref.appendChild(titleP);
+
+                    info.appendChild(titleHref);
+                    info.appendChild(author);
+                    info.appendChild(pages);
+                    info.appendChild(printed);
+                    info.appendChild(year);
+                    info.appendChild(isbn);
+
+                    downloadHref.appendChild(downloadP);
+                    readHref.appendChild(readP);
+
+                    child.appendChild(img);
+                    child.appendChild(info);
+                    child.appendChild(clear);
+                    child.appendChild(downloadHref);
+                    child.appendChild(readHref);
+                    child.appendChild(editHref);
+                    child.appendChild(deleteHref);
+
+
+
+                    parent.appendChild(child);
+                });
+
+                var clear = document.createElement('div');
+                clear.setAttribute('class', 'clear');
+                parent.appendChild(clear);
+            }
+        });
+    }
+</script>
+<!--while (parent.firstChild){-->
+<!--var tempElement = parent.firstChild;-->
+<!--if (tempElement.getAttribute('id') == 'child') {-->
+<!--parent.removeChild(parent.firstChild);-->
+<!--}-->
+<!--}-->
+<!--<div class="item" id="child">-->
+<!--<img src="images/prev.jpg" width="100" height="147" alt=""/>-->
+
+<!--<div class="info">-->
+<!--<a class="title" href="#">Бородино</a>-->
+<!--<span>М. Ю. Лермонтов</span>-->
+<!--<p>250 страниц</p>-->
+<!--<p>Издательство: Эксмо</p>-->
+<!--<p>Год издания: 1991 г.</p>-->
+<!--<p>ISBN:KJH-343-QWE</p>-->
+<!--</div>-->
+
+<!--<div class="clear"></div>-->
+<!--<a class="mr" href="#"><p class="read">Read</p></a>-->
+<!--<a class="mr" href="#"><p class="download">Download</p></a>-->
+<!--</div>-->
+
+
+<!--<ul>-->
+<!--<li><a href="#">Базнес</a></li>-->
+<!--</ul>-->
+</body>
+</html>
