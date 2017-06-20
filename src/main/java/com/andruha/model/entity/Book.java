@@ -7,7 +7,9 @@ import javax.persistence.*;
 /**
  * Created by andrusha on 19.06.17.
  */
-
+/**
+ * Main entity from DB it has 3 FK and it does not have its image and pdf content there, img and pdf are in another entity.
+ */
 @Entity
 @Table(name = "book")
 public class Book {
@@ -114,5 +116,32 @@ public class Book {
 
     public void setPublish_year(Integer publish_year) {
         this.publish_year = publish_year;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 41 * hash + (getId() != null ? getId().hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Book other = (Book) obj;
+        if (getId() != other.getId() && (getId() == null || !getId().equals(other.getId()))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }

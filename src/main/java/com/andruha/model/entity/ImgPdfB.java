@@ -7,6 +7,9 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "book")
+/**
+ * Entity from DB. It is part of book table, it is book's content and image.
+ */
 public class ImgPdfB {
 
     @Id

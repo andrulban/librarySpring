@@ -20,6 +20,11 @@ public class AuthorServiceImpl implements AuthorService {
         this.authorRepository = authorRepository;
     }
 
+    /**
+     * It downloads author name by id.
+     * @param id
+     * @return
+     */
     @Override
     public String getNameById(long id) {
         Author tempAuthor = authorRepository.findOne(id);

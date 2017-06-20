@@ -18,6 +18,11 @@ public class PublisherServiceImpl implements PublisherService {
         this.publisherRepository = publisherRepository;
     }
 
+    /**
+     * It downloads publisher's name by id.
+     * @param id
+     * @return
+     */
     @Override
     public String getPublisherNameById(long id) {
         return publisherRepository.findOne(id).getPublisherName();

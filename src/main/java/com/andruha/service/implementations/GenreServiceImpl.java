@@ -21,11 +21,20 @@ public class GenreServiceImpl implements GenreService {
         this.genreRepository = genreRepository;
     }
 
+    /**
+     * It downloads list of all genres.
+     * @return
+     */
     @Override
     public List<Genre> getAllGenre() {
         return genreRepository.findAll();
     }
 
+    /**
+     * It downloads name of genre by its id.
+     * @param id
+     * @return
+     */
     @Override
     public String getGenreNameById(long id) {
         return genreRepository.findOne(id).getGenreName();

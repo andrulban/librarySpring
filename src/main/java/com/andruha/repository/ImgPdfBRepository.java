@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
  * Created by andrusha on 20.06.17.
  */
 @Service
+/**
+ * Just a repository of book's images and contents.
+ */
 public interface ImgPdfBRepository extends JpaRepository<ImgPdfB,Long> {
 
     ImgPdfB findImgPdfBById(long id);

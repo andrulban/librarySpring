@@ -28,6 +28,13 @@ public class ImgPdfBController {
         this.imgPdfBService = imgPdfBService;
     }
 
+    /**
+     * Method which gets image like BLOP in DB and then shows images on index.html.
+     * @param id
+     * @param request
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping("/image/{id}")
     public @ResponseBody
     void image(@PathVariable long id, HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -39,6 +46,14 @@ public class ImgPdfBController {
         out.write(image);
     }
 
+    /**
+     * Method which gets pdf like BLOP in DB and then shows or downloads it.
+     * @param id
+     * @param action
+     * @param request
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping("/content/{action}")
     public @ResponseBody
     void content(@RequestParam(name = "id") long id, @PathVariable String action, HttpServletRequest request, HttpServletResponse response) throws IOException {

@@ -13,7 +13,11 @@ import java.util.List;
  */
 
 @Service
+/**
+ * Just a repository of books. It downloads not all info about book, without image and pdf.
+ */
 public interface BookRepository extends JpaRepository<Book, Long> {
+
     @Query("select b from Book b where b.genre_id = ?1")
     List<Book> findAllByGenre_id(Long id);
 

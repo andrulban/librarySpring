@@ -9,6 +9,9 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "genre")
+/**
+ * Simple entity from DB.
+ */
 public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,5 +42,32 @@ public class Genre {
 
     public void setGenreName(String genreName) {
         this.genreName = genreName;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 43 * hash + (getId() != null ? getId().hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Genre other = (Genre) obj;
+        if (getId() != other.getId() && (getId() == null || !getId().equals(other.getId()))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return getGenreName();
     }
 }

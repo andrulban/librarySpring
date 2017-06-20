@@ -18,11 +18,21 @@ public class ImgPdfBServiceImpl implements ImgPdfBService {
     }
 
 
+    /**
+     * It downloads book's image by book's id.
+     * @param id
+     * @return
+     */
     @Override
     public byte[] getImageByBookId(long id) {
         return imgPdfBRepository.findImgPdfBById(id).getImage();
     }
 
+    /**
+     * It downloads books's content by book's id.
+     * @param id
+     * @return
+     */
     @Override
     public byte[] getContentByBookId(long id) {
         return imgPdfBRepository.findImgPdfBById(id).getContent();

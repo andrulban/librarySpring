@@ -54,53 +54,98 @@ public class MainRestController {
     }
 
 
-
-
+    /**
+     * It downloads all books from DB.
+     * @return
+     */
     @RequestMapping(value = "/getAll")
     public List<Book> getAll(){
         return bookService.getAllBooks();
     }
 
+    /**
+     * It downloads list of books by genre id.
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/getBooksByGenreId/{id}")
     public List<Book> getBooksByGenreId(@PathVariable long id){
         return bookService.getBooksByGenreId(id);
     }
 
+    /**
+     * It downloads list of books which starts from the letter(param) letter.
+     * @param letter
+     * @return
+     */
     @RequestMapping(value = "/getBooksByLetter/{letter}")
     public List<Book> getBooksByLetter(@PathVariable String letter){return bookService.getBooksLetter(letter);}
 
+    /**
+     * It downloads list of books which contains string(param name) in book name.
+     * @param name
+     * @return
+     */
     @RequestMapping(value = "/getBooksByName/{name}")
     public List<Book> getBooksByName(@PathVariable String name){
         List<Book> list =  bookService.getBooksByName(name);
         return list;
     }
 
+    /**
+     * It downloads a book by its id.
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/getBookById/{id}")
     public Book getBookById(@PathVariable long id){
         return bookService.getBookById(id);
     }
 
-
+    /**
+     * It downloads an image by book id.
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/getBookImageById/{id}")
     public byte[] getBookImageById(@PathVariable long id){
         return imgPdfBService.getImageByBookId(id);
     }
 
+    /**
+     * It downloads publisher name by its id.
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/getPublisherName/{id}")
     public String getPublisherName(@PathVariable long id){
         return publisherService.getPublisherNameById(id);
     }
 
+    /**
+     * It downloads author name by its id.
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/getAuthorName/{id}")
     public String getAuthorName(@PathVariable long id){
         return authorService.getNameById(id);
     }
 
+    /**
+     * It downloads list of all genres.
+     * @return
+     */
     @RequestMapping(value = "/getAllGenres")
     public List<Genre> getAllGenres(){
         return genreService.getAllGenre();
     }
 
+    /**
+     * It downloads name of genre by its id.
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/getAllGenres/{id}")
     public String getGenreName(@PathVariable long id){
         return genreService.getGenreNameById(id);

@@ -1,19 +1,98 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Index</title>
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/ui-darkness/jquery-ui.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/index.js"></script>
 </head>
 <body>
 
-<div class="authorization">
-    <div class="clear"></div>
-    <form action="http://localhost:8080/books" method="get">
-        <input id="name" type="text" placeholder="name" class="aut-text" />
-        <input id="password" type="text" placeholder="password" class="aut-text" />
-        <input type="submit" class="butt" value="Enter"/>
-    </form>
+
+<div class="header">
+    <div class="header-wrap">
+
+        <div class="aut">
+            <a href="/logout">Exit</a>
+        </div>
+    </div>
 </div>
+
+<div id="wrap">
+
+    <div class="logo">
+        <a href="/books"><img src="images/libraryLogo.png" width="180" height="100" alt=""/></a>
+    </div>
+
+    <div class="menu">
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="search">
+        <input id="searchText" type="text" class="search-text" placeholder="Type name of a book"/>
+        <input type="submit" class="button-text"/>
+
+        <select>
+            <option>Name</option>
+        </select>
+
+        <input type="submit" class="button" onclick="searchBooksByName()" value="Search"/>
+    </div>
+    <div class="clear"></div>
+
+
+    <div class="nav">
+        <ul>
+            <li onclick="showBooks('/getBooksByLetter/A')"><a>A</a></li>
+            <li onclick="showBooks('/getBooksByLetter/B')"><a>B</a></li>
+            <li onclick="showBooks('/getBooksByLetter/C')"><a>C</a></li>
+            <li onclick="showBooks('/getBooksByLetter/D')"><a>D</a></li>
+            <li onclick="showBooks('/getBooksByLetter/E')"><a>E</a></li>
+            <li onclick="showBooks('/getBooksByLetter/F')"><a>F</a></li>
+            <li onclick="showBooks('/getBooksByLetter/G')"><a>G</a></li>
+            <li onclick="showBooks('/getBooksByLetter/H')"><a>H</a></li>
+            <li onclick="showBooks('/getBooksByLetter/I')"><a>I</a></li>
+            <li onclick="showBooks('/getBooksByLetter/G')"><a>G</a></li>
+            <li onclick="showBooks('/getBooksByLetter/K')"><a>K</a></li>
+            <li onclick="showBooks('/getBooksByLetter/L')"><a>L</a></li>
+            <li onclick="showBooks('/getBooksByLetter/M')"><a>M</a></li>
+            <li onclick="showBooks('/getBooksByLetter/N')"><a>N</a></li>
+            <li onclick="showBooks('/getBooksByLetter/O')"><a>O</a></li>
+            <li onclick="showBooks('/getBooksByLetter/P')"><a>P</a></li>
+            <li onclick="showBooks('/getBooksByLetter/Q')"><a>Q</a></li>
+            <li onclick="showBooks('/getBooksByLetter/R')"><a>R</a></li>
+            <li onclick="showBooks('/getBooksByLetter/S')"><a>S</a></li>
+            <li onclick="showBooks('/getBooksByLetter/T')"><a>T</a></li>
+            <li onclick="showBooks('/getBooksByLetter/U')"><a>U</a></li>
+            <li onclick="showBooks('/getBooksByLetter/V')"><a>V</a></li>
+            <li onclick="showBooks('/getBooksByLetter/W')"><a>W</a></li>
+            <li onclick="showBooks('/getBooksByLetter/X')"><a>X</a></li>
+            <li onclick="showBooks('/getBooksByLetter/Y')"><a>Y</a></li>
+            <li onclick="showBooks('/getBooksByLetter/Z')"><a>Z</a></li>
+        </ul>
+    </div>
+
+    <!-- content -->
+    <div class="content" id="hui">
+        <div class="left-menu" id="genresDiv"></div>
+        <div class="right-content" id="booksDiv"></div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer_blank"></div>
+</div>
+<div id="footer">
+    <div class="footer-wrap">
+        <p>&#169; 2017 &#171;Andrii Tytarchuk&#187;</p>
+    </div>
+</div>
+
 </body>
 </html>
