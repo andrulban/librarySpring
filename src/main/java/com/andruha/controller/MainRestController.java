@@ -71,8 +71,15 @@ public class MainRestController {
 
     @RequestMapping(value = "/getBooksByName/{name}")
     public List<Book> getBooksByName(@PathVariable String name){
-        return bookService.getBooksByName(name);
+        List<Book> list =  bookService.getBooksByName(name);
+        return list;
     }
+
+    @RequestMapping(value = "/getBookById/{id}")
+    public Book getBookById(@PathVariable long id){
+        return bookService.getBookById(id);
+    }
+
 
     @RequestMapping(value = "/getBookImageById/{id}")
     public byte[] getBookImageById(@PathVariable long id){

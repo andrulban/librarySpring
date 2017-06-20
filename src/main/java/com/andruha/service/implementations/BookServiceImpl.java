@@ -41,4 +41,24 @@ public class BookServiceImpl implements BookService {
     public List<Book> getBooksLetter(String letter) {
         return bookRepository.findBooksByNameStartsWith(letter);
     }
+
+    @Override
+    public Book getBookById(long id) {
+        return bookRepository.getBookById(id);
+    }
+
+    @Override
+    public void deleteBookById(long id) {
+        bookRepository.delete(id);
+    }
+
+    @Override
+    public void editBookById(long id) {
+        //bookRepository
+    }
+
+    @Override
+    public void createBook(Book book) {
+        bookRepository.save(book);
+    }
 }

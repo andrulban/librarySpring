@@ -32,15 +32,11 @@ public class Book {
     private String isbn;
     @Column(name = "publish_year")
     private Integer publish_year;
-    @Column(name = "descr")
-    private String descr;
-    @Column(name = "isEditing", nullable = false)
-    private boolean isEditing;
 
     public Book() {
     }
 
-    public Book(long author_id, long genre_id, long publisher_id, String name, int pageCount, String isbn, Integer publish_year, String descr, boolean isEditing) {
+    public Book(long author_id, long genre_id, long publisher_id, String name, int pageCount, String isbn, Integer publish_year) {
         this.author_id = author_id;
         this.genre_id = genre_id;
         this.publisher_id = publisher_id;
@@ -48,8 +44,6 @@ public class Book {
         this.pageCount = pageCount;
         this.isbn = isbn;
         this.publish_year = publish_year;
-        this.descr = descr;
-        this.isEditing = isEditing;
     }
 
     public Long getId() {
@@ -85,30 +79,6 @@ public class Book {
         this.isbn = isbn;
     }
 
-
-    public String getDescr() {
-        return this.descr;
-    }
-
-    public void setDescr(String descr) {
-        this.descr = descr;
-    }
-
-    public boolean isIsEditing() {
-        return isEditing;
-    }
-
-    public void setIsEditing(boolean isEditing) {
-        this.isEditing = isEditing;
-    }
-
-    public boolean isEditing() {
-        return isEditing;
-    }
-
-    public void setEditing(boolean editing) {
-        isEditing = editing;
-    }
 
     public void setId(long id) {
         this.id = id;

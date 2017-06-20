@@ -19,4 +19,9 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> findBooksByNameContains(String name);
 
     List<Book> findBooksByNameStartsWith(String letter);
+
+    Book getBookById(long id);
+
+    void deleteBookById(long id);
+
 }
