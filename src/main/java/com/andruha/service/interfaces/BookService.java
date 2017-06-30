@@ -8,8 +8,6 @@ import java.util.List;
 /**
  * Created by andrusha on 19.06.17.
  */
-
-@Service
 public interface BookService {
 
     List<Book> getAllBooks();

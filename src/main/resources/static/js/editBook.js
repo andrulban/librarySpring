@@ -9,7 +9,7 @@ function getBookInfo() {
     var idAndInt = bookId.split('=');
     bookId = idAndInt[1];
     $.ajax({
-            url: '/getBookById/' + bookId,
+            url: '/books/' + bookId,
             success: function (data) {
                 document.getElementById('author_id').setAttribute('value', data.author_id);
                 document.getElementById('genre_id').setAttribute('value', data.genre_id);
@@ -37,7 +37,7 @@ function edit() {
     var publish_year = document.getElementById('publish_year').value;
     var Book = {id : id, author_id: author_id, genre_id: genre_id, publisher_id: publisher_id, name: name, pageCount: pageCount, isbn: isbn, publish_year:publish_year};
     $.ajax({
-        url : "/doEditBook",
+        url : "/books",
         contentType : 'application/json',
         data : JSON.stringify(Book),
         type : 'POST',
@@ -47,5 +47,5 @@ function edit() {
         error:  function(xhr, str){
         }
     });
-    window.location.replace("/books");
+    window.location.replace("/main");
 }

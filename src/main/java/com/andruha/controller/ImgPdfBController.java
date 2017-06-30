@@ -3,10 +3,7 @@ package com.andruha.controller;
 import com.andruha.service.interfaces.ImgPdfBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,13 +28,12 @@ public class ImgPdfBController {
     /**
      * Method which gets image like BLOP in DB and then shows images on index.html.
      * @param id
-     * @param request
      * @param response
      * @throws IOException
      */
-    @RequestMapping("/image/{id}")
+    @RequestMapping(value = "/image/{id}", method = RequestMethod.GET)
     public @ResponseBody
-    void image(@PathVariable long id, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    void image(@PathVariable long id, HttpServletResponse response) throws IOException {
         response.setContentType("image/jpeg");
         OutputStream out = response.getOutputStream();
 
@@ -54,7 +50,7 @@ public class ImgPdfBController {
      * @param response
      * @throws IOException
      */
-    @RequestMapping("/content/{action}")
+    @RequestMapping(value = "/content/{action}", method = RequestMethod.GET)
     public @ResponseBody
     void content(@RequestParam(name = "id") long id, @PathVariable String action, HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("application/pdf");

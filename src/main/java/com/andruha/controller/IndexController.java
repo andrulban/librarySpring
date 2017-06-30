@@ -15,7 +15,7 @@ public class IndexController {
      * It redirects to index.
      * @return
      */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/")
     public String index() {
         return "index.html";
     }
@@ -24,7 +24,7 @@ public class IndexController {
      * It shows login page.
      * @return
      */
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login")
     public String login() {
         return "pages/login.html";
     }
@@ -33,7 +33,7 @@ public class IndexController {
      * It redirects to index.
      * @return
      */
-    @RequestMapping("/books")
+    @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String books() {
         return "index.html";
     }

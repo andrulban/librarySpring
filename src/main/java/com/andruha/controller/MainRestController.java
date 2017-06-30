@@ -11,6 +11,7 @@ import com.andruha.service.interfaces.ImgPdfBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -58,7 +59,7 @@ public class MainRestController {
      * It downloads all books from DB.
      * @return
      */
-    @RequestMapping(value = "/getAll")
+    @RequestMapping(value = "/books", method = RequestMethod.GET)
     public List<Book> getAll(){
         return bookService.getAllBooks();
     }
@@ -68,7 +69,7 @@ public class MainRestController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/getBooksByGenreId/{id}")
+    @RequestMapping(value = "/books/genreId/{id}", method = RequestMethod.GET)
     public List<Book> getBooksByGenreId(@PathVariable long id){
         return bookService.getBooksByGenreId(id);
     }
@@ -78,7 +79,7 @@ public class MainRestController {
      * @param letter
      * @return
      */
-    @RequestMapping(value = "/getBooksByLetter/{letter}")
+    @RequestMapping(value = "/books/letter/{letter}", method = RequestMethod.GET)
     public List<Book> getBooksByLetter(@PathVariable String letter){return bookService.getBooksLetter(letter);}
 
     /**
@@ -86,7 +87,7 @@ public class MainRestController {
      * @param name
      * @return
      */
-    @RequestMapping(value = "/getBooksByName/{name}")
+    @RequestMapping(value = "/books/name/{name}", method = RequestMethod.GET)
     public List<Book> getBooksByName(@PathVariable String name){
         List<Book> list =  bookService.getBooksByName(name);
         return list;
@@ -97,19 +98,9 @@ public class MainRestController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/getBookById/{id}")
+    @RequestMapping(value = "/books/{id}",method = RequestMethod.GET)
     public Book getBookById(@PathVariable long id){
         return bookService.getBookById(id);
-    }
-
-    /**
-     * It downloads an image by book id.
-     * @param id
-     * @return
-     */
-    @RequestMapping(value = "/getBookImageById/{id}")
-    public byte[] getBookImageById(@PathVariable long id){
-        return imgPdfBService.getImageByBookId(id);
     }
 
     /**
@@ -117,7 +108,7 @@ public class MainRestController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/getPublisherName/{id}")
+    @RequestMapping(value = "/publisherName/{id}")
     public String getPublisherName(@PathVariable long id){
         return publisherService.getPublisherNameById(id);
     }
@@ -127,7 +118,7 @@ public class MainRestController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/getAuthorName/{id}")
+    @RequestMapping(value = "/authorName/{id}")
     public String getAuthorName(@PathVariable long id){
         return authorService.getNameById(id);
     }
@@ -136,18 +127,8 @@ public class MainRestController {
      * It downloads list of all genres.
      * @return
      */
-    @RequestMapping(value = "/getAllGenres")
+    @RequestMapping(value = "/genres")
     public List<Genre> getAllGenres(){
         return genreService.getAllGenre();
-    }
-
-    /**
-     * It downloads name of genre by its id.
-     * @param id
-     * @return
-     */
-    @RequestMapping(value = "/getAllGenres/{id}")
-    public String getGenreName(@PathVariable long id){
-        return genreService.getGenreNameById(id);
     }
 }

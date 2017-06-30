@@ -1,31 +1,32 @@
 /**
  * Created by andrusha on 20.06.17.
  */
-showBooks('/getAll');
+showBooks('/books');
 showAllGenres();
 
 function deleteBook(id) {
     if (confirm('Do you really want to delete this book?')) {
         $.ajax({
-            url: '/deleteBook/' + id,
+            url: '/books/' + id,
+            type: 'DELETE',
             success: function (data) {
 
             }
         });
     }
-    showBooks('/getAll');
+    showBooks('/books');
 }
 
 function searchBooksByName() {
     if (document.getElementById('searchText').value === '') {
-        showBooks('/getAll');
+        showBooks('/books');
     }
-    showBooks('/getBooksByName/' + document.getElementById('searchText').value);
+    showBooks('/books/name/' + document.getElementById('searchText').value);
 }
 
 function showAllGenres() {
     $.ajax({
-        url: '/getAllGenres',
+        url: '/genres',
         success: function (data) {
             var rightContent = document.getElementById('genresDiv');
 
@@ -37,7 +38,7 @@ function showAllGenres() {
 
 
                 genreHref.onclick = function () {
-                    showBooks('/getBooksByGenreId/' + element.id);
+                    showBooks('/books/genreId/' + element.id);
                 };
 
                 line.appendChild(genreHref);
@@ -71,7 +72,7 @@ function showBooks(url) {
             addHref.innerHTML = 'Add';
             addHref.setAttribute('type', 'button');
             addHref.setAttribute('id', 'button');
-            addHref.setAttribute('href', '/addBook')
+            addHref.setAttribute('href', '/bookAdding')
 
             box_sh.appendChild(amountOfBooks);
             box_sh.appendChild(addHref);
@@ -116,7 +117,7 @@ function showBooks(url) {
                 var editHref = document.createElement('a');
                 editHref.innerHTML = 'Edit';
                 editHref.setAttribute('class', 'mr');
-                editHref.setAttribute('href', '/editBook?id=' + element.id);
+                editHref.setAttribute('href', '/bookEdition?id=' + element.id);
 
                 var deleteHref = document.createElement('a');
                 deleteHref.innerHTML = 'Delete';
@@ -125,7 +126,7 @@ function showBooks(url) {
 
                 var printed = document.createElement('p');
                 $.ajax({
-                    url: '/getPublisherName/' + element.publisher_id,
+                    url: '/publisherName/' + element.publisher_id,
                     success: function (data) {
                         printed.innerHTML = 'Publisher:' + data;
                     }
@@ -148,7 +149,7 @@ function showBooks(url) {
 
                 var author = document.createElement('span');
                 $.ajax({
-                    url: '/getAuthorName/' + element.author_id,
+                    url: '/authorName/' + element.author_id,
                     success: function (data) {
                         author.innerHTML = data;
                     }
