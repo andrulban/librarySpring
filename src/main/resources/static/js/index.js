@@ -133,7 +133,7 @@ function showBooks(url) {
                 });
 
                 var year = document.createElement('p');
-                year.innerHTML = 'Publishing year: ' + element.publish_year;
+                year.innerHTML = 'Publishing year: ' + element.publishYear;
 
                 var isbn = document.createElement('p');
                 isbn.innerHTML = 'ISBN code: ' + element.isbn;

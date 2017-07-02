@@ -3,10 +3,16 @@ package com.andruha.controller;
 import com.andruha.model.entity.FullBook;
 import com.andruha.service.interfaces.BookService;
 import com.andruha.service.interfaces.FullBookService;
+import com.sun.deploy.net.HttpRequest;
+import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import com.andruha.model.entity.Book;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Created by andrusha on 20.06.17.
@@ -37,13 +43,49 @@ public class AddEditDeleteBookController {
 
     /**
      * Method which edits selected book and redirects back to index again.
-     * @param book
+     * @param name
+     * @param authorId
+     * @param content
+     * @param image
+     * @param genreId
+     * @param publisherId
+     * @param pageCount
+     * @param publishYear
+     * @param isbn
+     * @param response
      * @return
      */
-    @RequestMapping(value = "/books", method = RequestMethod.POST)
-    public String editBook(@RequestBody Book book) {
-        bookService.editBookById(book);
-        return "pages/index.html";
+    @RequestMapping(value = "/booksEdit", method = RequestMethod.POST)
+    public void editBook(@RequestParam(name = "name") String name, @RequestParam(name = "author_id") long authorId,
+                           @RequestParam (name = "content") MultipartFile content, @RequestParam(name = "image") MultipartFile image,
+                           @RequestParam(name = "genre_id") long genreId , @RequestParam(name = "publisher_id") long publisherId,
+                           @RequestParam(name = "pageCount") int pageCount, @RequestParam(name = "publishYear") int publishYear,
+                           @RequestParam(name = "isbn") String isbn, @RequestParam(name = "id") Long id,
+                         HttpServletResponse response) {
+
+        try {
+            FullBook fullBook = new FullBook();
+            fullBook.setId(id);
+            fullBook.setAuthor_id(authorId);
+            fullBook.setGenre_id(genreId);
+            fullBook.setPublisher_id(publisherId);
+
+            fullBook.setIsbn(isbn);
+            fullBook.setName(name);
+            fullBook.setPageCount(pageCount);
+            fullBook.setPublishYear(publishYear);
+            fullBook.setContent(content.getBytes());
+            fullBook.setImage(image.getBytes());
+            fullBookService.editFullBook(fullBook);
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        try {
+            response.sendRedirect("/main");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -55,29 +97,48 @@ public class AddEditDeleteBookController {
         return "pages/addBook.html";
     }
 
-    /**
-     * Method which adds new book and redirects back to index again.
-     * @param fullBook
-     * @return
-     */
-    @RequestMapping(value = "/books", method = RequestMethod.PUT)
-    public String addBook(@RequestBody FullBook fullBook) {
-        fullBookService.createFullBook(fullBook);
-        return "pages/index.html";
-    }
-
-//    @RequestMapping(value = "/doAddBook", method = RequestMethod.POST)
-//    public String doAddBook(@RequestBody FullBook fullBook, @RequestParam(name = "image")MultipartFile image, @RequestParam (name = "content") MultipartFile content) {
-//        try {
-//            fullBook.setContent(content.getBytes());
-//            fullBook.setImage(image.getBytes());
-//        }
-//        catch (IOException ex) {
-//            ex.printStackTrace();
-//        }
+//    /**
+//     * Method which adds new book and redirects back to index again.
+//     * @param fullBook
+//     * @return
+//     */
+//    @RequestMapping(value = "/books", method = RequestMethod.PUT)
+//    public String addBook(@RequestBody FullBook fullBook) {
 //        fullBookService.createFullBook(fullBook);
 //        return "pages/index.html";
 //    }
+
+    @RequestMapping(value = "/books", method = RequestMethod.POST)
+    public void  doAddBook(@RequestParam(name = "name") String name, @RequestParam(name = "author_id") long authorId,
+                           @RequestParam (name = "content") MultipartFile content, @RequestParam(name = "image") MultipartFile image,
+                           @RequestParam(name = "genre_id") long genreId , @RequestParam(name = "publisher_id") long publisherId,
+                           @RequestParam(name = "pageCount") int pageCount, @RequestParam(name = "publishYear") int publishYear,
+                           @RequestParam(name = "isbn") String isbn, HttpServletResponse response) {
+        try {
+            FullBook fullBook = new FullBook();
+            fullBook.setAuthor_id(authorId);
+            fullBook.setGenre_id(genreId);
+            fullBook.setPublisher_id(publisherId);
+
+            fullBook.setIsbn(isbn);
+            fullBook.setName(name);
+            fullBook.setPageCount(pageCount);
+            fullBook.setPublishYear(publishYear);
+            fullBook.setContent(content.getBytes());
+            fullBook.setImage(image.getBytes());
+            fullBookService.createFullBook(fullBook);
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+
+        try {
+            response.sendRedirect("/main");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Method which deletes book by id and redirects back to index again.
@@ -87,7 +148,7 @@ public class AddEditDeleteBookController {
     @RequestMapping(value = "/books/{id}", method = RequestMethod.DELETE)
     public String deleteBookById(@PathVariable long id){
         bookService.deleteBookById(id);
-        return "pages/index.html";
+        return "index.html";
     }
 
 

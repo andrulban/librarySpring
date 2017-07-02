@@ -9,14 +9,19 @@
 </head>
 <body>
 <div id="main">
-    <p>Author id: <input id="author_id" type="text"></p>
-    <p>Genre id <input id="genre_id" type="text"></p>
-    <p>Publisher id:<input id="publisher_id" type="text"></p>
-    <p>Name: <input id="name" type="text"></p>
-    <p>Amount of pages: <input id="pageCount" type="text"></p>
-    <p>ISBN code: <input id="isbn" type="text"></p>
-    <p>Year: <input id="publish_year" type="text"></p>
-    <input type="button" onclick="edit()" value="Edit">
+    <form action="/booksEdit" method="post" enctype="multipart/form-data">
+        Id: <input id="id" name="id" readonly="true"><br/>
+        Author id: <input id="author_id" name="author_id" type="text"><br/>
+        Genre id <input id="genre_id" name="genre_id"  type="text"><br/>
+        Publisher id:<input id="publisher_id" name="publisher_id" type="text"><br/>
+        Name: <input id="name" name="name" type="text"><br/>
+        Amount of pages: <input id="pageCount" name="pageCount" type="text"><br/>
+        ISBN code: <input id="isbn" name="isbn" type="text"><br/>
+        Year: <input id="publishYear" name="publishYear" type="text"><br/>
+        Image: <input type="file" id="image" name="image" size="40"><br/>
+        Content(pdf): <input type="file" id="content" name="content" size="40"><br/>
+        <input type="submit" value="Edit">
+    </form>
 </div>
 </body>
 </html>

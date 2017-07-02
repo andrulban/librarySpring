@@ -1,19 +1,21 @@
 package com.andruha.controller;
 
 import com.andruha.model.entity.Book;
+import com.andruha.model.entity.FullBook;
 import com.andruha.model.entity.Genre;
 import com.andruha.repository.ImgPdfBRepository;
+import com.andruha.service.implementations.FullBookServiceImpl;
 import com.andruha.service.implementations.GenreServiceImpl;
 import com.andruha.service.implementations.PublisherServiceImpl;
 import com.andruha.service.interfaces.AuthorService;
 import com.andruha.service.interfaces.BookService;
+import com.andruha.service.interfaces.FullBookService;
 import com.andruha.service.interfaces.ImgPdfBService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -27,7 +29,7 @@ public class MainRestController {
     private AuthorService authorService;
     private GenreServiceImpl genreService;
     private PublisherServiceImpl publisherService;
-    private ImgPdfBService imgPdfBService;
+    private FullBookServiceImpl fullBookService;
 
     @Autowired
     public void setBookService(BookService bookService) {
@@ -50,10 +52,9 @@ public class MainRestController {
     }
 
     @Autowired
-    public void setImgPdfBService(ImgPdfBService imgPdfBService) {
-        this.imgPdfBService = imgPdfBService;
+    public void setFullBookService(FullBookServiceImpl fullBookService) {
+        this.fullBookService = fullBookService;
     }
-
 
     /**
      * It downloads all books from DB.
@@ -91,6 +92,16 @@ public class MainRestController {
     public List<Book> getBooksByName(@PathVariable String name){
         List<Book> list =  bookService.getBooksByName(name);
         return list;
+    }
+
+    @RequestMapping(value = "/fullBooks", method = RequestMethod.GET)
+    public List<FullBook> getFullAll(){
+        return fullBookService.getAll();
+    }
+
+    @RequestMapping(value = "/fullBooks/{id}", method = RequestMethod.GET)
+    public FullBook getFullBook(@PathVariable Long id){
+        return fullBookService.getFullBook(id);
     }
 
     /**

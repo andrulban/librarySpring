@@ -25,7 +25,7 @@ public class BookAbstract {
     @Column(name = "isbn", nullable = false)
     private String isbn;
     @Column(name = "publish_year")
-    private Integer publish_year;
+    private Integer publishYear;
 
     public BookAbstract() {
     }
@@ -92,12 +92,12 @@ public class BookAbstract {
         this.publisher_id = publisher_id;
     }
 
-    public Integer getPublish_year() {
-        return publish_year;
+    public Integer getPublishYear() {
+        return publishYear;
     }
 
-    public void setPublish_year(Integer publish_year) {
-        this.publish_year = publish_year;
+    public void setPublishYear(Integer publishYear) {
+        this.publishYear = publishYear;
     }
 
     @Override

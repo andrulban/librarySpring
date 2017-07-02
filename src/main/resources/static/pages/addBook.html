@@ -4,19 +4,21 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="../js/addBook.js"></script>
 </head>
 <body>
-    <p>Author id: <input id="author_id" type="text" value="16"></p>
-    <p>Genre id <input id="genre_id" type="text" value="16"></p>
-    <p>Publisher id:<input id="publisher_id" type="text" value="10"></p>
-    <p>Name: <input id="name" type="text" value="aa"></p>
-    <p>Amount of pages: <input id="pageCount" type="text" value="100"></p>
-    <p>ISBN code: <input id="isbn" type="text"></p>
-    <p>Year: <input id="publish_year" type="text" value="2017"></p>
-    <p>Image: <input type="file" id="image" size="40"></p>
-    <p>Content(pdf): <input type="file" id="content" size="40"></p>
-    <p><input type="button" onclick="create()" value="Create"></p>
+<form action="/books" method="post" enctype="multipart/form-data">
+    Author id: <input name="author_id" type="text" value="16"><br/>
+    Genre id <input name="genre_id" type="text" value="16"><br/>
+    Publisher id:<input name="publisher_id" type="text" value="10"><br/>
+    Name: <input name="name" type="text" value="aa"><br/>
+    Amount of pages: <input name="pageCount" type="text" value="100"><br/>
+    ISBN code: <input name="isbn" type="text"><br/>
+    Year: <input name="publishYear" type="text" value="2017"><br/>
+    Image: <input type="file" name="image" size="40"><br/>
+    Content(pdf): <input type="file" name="content" size="40"><br/>
+    <input type="submit" value="Create">
+</form>
 </body>
 </html>

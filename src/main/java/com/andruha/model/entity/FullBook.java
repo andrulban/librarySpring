@@ -3,13 +3,14 @@ package com.andruha.model.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * Created by andrusha on 24.06.17.
  */
 @Entity
 @Table(name = "book")
-public class FullBook extends BookAbstract {
+public class FullBook extends BookAbstract implements Serializable {
     @Column(name = "image")
     private byte[] image;
     @Column(name = "content")

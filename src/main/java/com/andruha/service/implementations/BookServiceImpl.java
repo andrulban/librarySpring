@@ -94,7 +94,7 @@ public class BookServiceImpl implements BookService {
         dbBook.setIsbn(book.getIsbn());
         dbBook.setName(book.getName());
         dbBook.setPublisher_id(book.getPublisher_id());
-        dbBook.setPublish_year(book.getPublish_year());
+        dbBook.setPublishYear(book.getPublishYear());
         bookRepository.saveAndFlush(dbBook);
     }
 

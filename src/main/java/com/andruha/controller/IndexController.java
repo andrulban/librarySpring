@@ -38,5 +38,4 @@ public class IndexController {
         return "index.html";
     }
 
-
 }
