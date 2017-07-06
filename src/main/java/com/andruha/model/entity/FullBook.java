@@ -20,6 +20,12 @@ public class FullBook extends BookAbstract implements Serializable {
         super();
     }
 
+    public FullBook(long author_id, long genre_id, long publisher_id, String name, int pageCount, String isbn, Integer publishYear, byte[] image, byte[] content) {
+        super(author_id, genre_id, publisher_id, name, pageCount, isbn, publishYear);
+        this.image = image;
+        this.content = content;
+    }
+
     public byte[] getImage() {
         return image;
     }

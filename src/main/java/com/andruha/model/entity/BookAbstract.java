@@ -30,6 +30,16 @@ public class BookAbstract {
     public BookAbstract() {
     }
 
+    public BookAbstract(long author_id, long genre_id, long publisher_id, String name, int pageCount, String isbn, Integer publishYear) {
+        this.author_id = author_id;
+        this.genre_id = genre_id;
+        this.publisher_id = publisher_id;
+        this.name = name;
+        this.pageCount = pageCount;
+        this.isbn = isbn;
+        this.publishYear = publishYear;
+    }
+
     public Long getId() {
         return this.id;
     }
