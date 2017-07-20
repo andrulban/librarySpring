@@ -30,6 +30,11 @@ public class GenreServiceImpl implements GenreService {
         return genreRepository.findAll();
     }
 
+    @Override
+    public Genre getGenreByName(String name) {
+        return genreRepository.findGenreByNameG(name);
+    }
+
     /**
      * It downloads name of genre by its id.
      * @param id
@@ -37,6 +42,11 @@ public class GenreServiceImpl implements GenreService {
      */
     @Override
     public String getGenreNameById(long id) {
-        return genreRepository.findOne(id).getGenreName();
+        return genreRepository.findOne(id).getNameG();
+    }
+
+    @Override
+    public Long getIdByName(String name) {
+        return genreRepository.getIdByName(name);
     }
 }

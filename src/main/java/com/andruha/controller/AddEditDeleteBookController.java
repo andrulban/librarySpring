@@ -1,16 +1,14 @@
 package com.andruha.controller;
 
 import com.andruha.model.entity.FullBook;
+import com.andruha.service.implementations.GenreServiceImpl;
+import com.andruha.service.implementations.PublisherServiceImpl;
+import com.andruha.service.interfaces.AuthorService;
 import com.andruha.service.interfaces.BookService;
 import com.andruha.service.interfaces.FullBookService;
-import com.sun.deploy.net.HttpRequest;
-import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import com.andruha.model.entity.Book;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -22,6 +20,24 @@ import java.io.IOException;
 public class AddEditDeleteBookController {
     private BookService bookService;
     private FullBookService fullBookService;
+    private AuthorService authorService;
+    private GenreServiceImpl genreService;
+    private PublisherServiceImpl publisherService;
+
+    @Autowired
+    public void setAuthorService(AuthorService authorService) {
+        this.authorService = authorService;
+    }
+
+    @Autowired
+    public void setGenreService(GenreServiceImpl genreService) {
+        this.genreService = genreService;
+    }
+
+    @Autowired
+    public void setPublisherService(PublisherServiceImpl publisherService) {
+        this.publisherService = publisherService;
+    }
 
     @Autowired
     public void setBookService(BookService bookService) {
@@ -45,6 +61,9 @@ public class AddEditDeleteBookController {
 
     @RequestMapping(value = "/books", method = RequestMethod.POST)
     public void editBook(@RequestBody FullBook fullBook, HttpServletResponse response) {
+        fullBook.getPublisher().setId(publisherService.getIdByName(fullBook.getPublisher().getNameP()));
+        fullBook.getAuthor().setId(authorService.getIdByName(fullBook.getAuthor().getFio()));
+        fullBook.getGenre().setId(authorService.getIdByName(fullBook.getGenre().getNameG()));
         fullBookService.editFullBook(fullBook);
         try {
             response.sendRedirect("/main");
@@ -83,7 +102,7 @@ public class AddEditDeleteBookController {
 //            fullBook.setPublisher_id(publisherId);
 //
 //            fullBook.setIsbn(isbn);
-//            fullBook.setName(name);
+//            fullBook.setNameG(name);
 //            fullBook.setPageCount(pageCount);
 //            fullBook.setPublishYear(publishYear);
 //            fullBook.setContent(content.getBytes());
@@ -112,7 +131,9 @@ public class AddEditDeleteBookController {
 
     @RequestMapping(value = "/books", method = RequestMethod.PUT)
     public void addBook(@RequestBody FullBook fullBook, HttpServletResponse response) {
-
+        fullBook.getPublisher().setId(publisherService.getIdByName(fullBook.getPublisher().getNameP()));
+        fullBook.getAuthor().setId(authorService.getIdByName(fullBook.getAuthor().getFio()));
+        fullBook.getGenre().setId(authorService.getIdByName(fullBook.getGenre().getNameG()));
         fullBookService.createFullBook(fullBook);
         try {
             response.sendRedirect("/main");
@@ -134,7 +155,7 @@ public class AddEditDeleteBookController {
 //            fullBook.setPublisher_id(publisherId);
 //
 //            fullBook.setIsbn(isbn);
-//            fullBook.setName(name);
+//            fullBook.setNameG(name);
 //            fullBook.setPageCount(pageCount);
 //            fullBook.setPublishYear(publishYear);
 //            fullBook.setContent(content.getBytes());
@@ -165,5 +186,10 @@ public class AddEditDeleteBookController {
         return "index.html";
     }
 
+
+    @RequestMapping(value = "/tra", method = RequestMethod.PUT)
+    public String tra() {
+        return "index.html";
+    }
 
 }

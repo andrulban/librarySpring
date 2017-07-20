@@ -1,8 +1,6 @@
 package com.andruha.model.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by andrusha on 19.06.17.
@@ -18,13 +16,13 @@ public class Genre {
     @Column (name = "id", nullable = false)
     private Long id;
     @Column (name = "name", nullable = false, length = 100)
-    private String genreName;
+    private String nameG;
 
     public Genre() {
     }
 
-    public Genre(String genreName) {
-        this.genreName = genreName;
+    public Genre(String nameG) {
+        this.nameG = nameG;
     }
 
 
@@ -36,12 +34,12 @@ public class Genre {
         this.id = id;
     }
 
-    public String getGenreName() {
-        return genreName;
+    public String getNameG() {
+        return nameG;
     }
 
-    public void setGenreName(String genreName) {
-        this.genreName = genreName;
+    public void setNameG(String nameG) {
+        this.nameG = nameG;
     }
 
     @Override
@@ -68,6 +66,6 @@ public class Genre {
 
     @Override
     public String toString() {
-        return getGenreName();
+        return getNameG();
     }
 }

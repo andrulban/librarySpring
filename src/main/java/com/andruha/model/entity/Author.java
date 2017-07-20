@@ -1,13 +1,12 @@
 package com.andruha.model.entity;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * Created by andrusha on 19.06.17.
  */
 @Entity
-@Table(name="author")
+@Table(name = "author")
 /**
  * Simple entity from DB.
  */
@@ -17,27 +16,10 @@ public class Author {
     @Column(name = "id", nullable = false)
     private Long id;
     @Column(name = "fio", nullable = false)
-    private String allNames;
-    @Column(name = "birthday", nullable = false)
-    private Date birthdayDate;
+    private String fio;
 
     public Author() {
     }
-
-    public Author(Date birthdayDate, Long id, String allNames) {
-        this.birthdayDate = birthdayDate;
-        this.id = id;
-        this.allNames = allNames;
-    }
-
-    public Date getBirthdayDate() {
-        return birthdayDate;
-    }
-
-    public void setBirthdayDate(Date birthdayDate) {
-        this.birthdayDate = birthdayDate;
-    }
-
 
     public Long getId() {
         return id;
@@ -47,12 +29,12 @@ public class Author {
         this.id = id;
     }
 
-    public String getAllNames() {
-        return allNames;
+    public String getFio() {
+        return fio;
     }
 
-    public void setAllNames(String allNames) {
-        this.allNames = allNames;
+    public void setFio(String fio) {
+        this.fio = fio;
     }
 
     @Override
@@ -79,7 +61,7 @@ public class Author {
 
     @Override
     public String toString() {
-        return getAllNames();
+        return getFio();
     }
 
 

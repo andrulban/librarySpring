@@ -16,13 +16,13 @@ public class Publisher {
     @Column(name = "id", nullable = false)
     private Long id;
     @Column(name = "name", length = 100)
-    private String publisherName;
+    private String nameP;
 
     public Publisher() {
     }
 
-    public Publisher(String publisherName) {
-        this.publisherName = publisherName;
+    public Publisher(String nameP) {
+        this.nameP = nameP;
     }
 
     public Long getId() {
@@ -33,12 +33,12 @@ public class Publisher {
         this.id = id;
     }
 
-    public String getPublisherName() {
-        return publisherName;
+    public String getNameP() {
+        return nameP;
     }
 
-    public void setPublisherName(String publisherName) {
-        this.publisherName = publisherName;
+    public void setNameP(String nameP) {
+        this.nameP = nameP;
     }
 
     @Override
@@ -65,6 +65,6 @@ public class Publisher {
 
     @Override
     public String toString() {
-        return getPublisherName();
+        return getNameP();
     }
 }

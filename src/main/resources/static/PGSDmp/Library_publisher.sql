@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `publisher`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `publisher` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
+  `nameG` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

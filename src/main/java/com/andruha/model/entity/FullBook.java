@@ -1,8 +1,6 @@
 package com.andruha.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -15,15 +13,18 @@ public class FullBook extends BookAbstract implements Serializable {
     private byte[] image;
     @Column(name = "content")
     private byte[] content;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "author_id")
+    private Author author;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
+    @ManyToOne(fetch = FetchType.EAGER,  cascade = CascadeType.MERGE)
+    @JoinColumn(name = "publisher_id")
+    private Publisher publisher;
 
     public FullBook() {
         super();
-    }
-
-    public FullBook(long author_id, long genre_id, long publisher_id, String name, int pageCount, String isbn, Integer publishYear, byte[] image, byte[] content) {
-        super(author_id, genre_id, publisher_id, name, pageCount, isbn, publishYear);
-        this.image = image;
-        this.content = content;
     }
 
     public byte[] getImage() {
@@ -40,5 +41,29 @@ public class FullBook extends BookAbstract implements Serializable {
 
     public void setContent(byte[] content) {
         this.content = content;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 }

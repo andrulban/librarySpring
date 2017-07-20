@@ -27,17 +27,6 @@ public class FullBookServiceImpl implements FullBookService {
 
     @Override
     public void editFullBook(FullBook fullBook) {
-        FullBook dbFullBook = fullBookRepository.findOne(fullBook.getId());
-        dbFullBook.setPageCount(fullBook.getPageCount());
-        dbFullBook.setAuthor_id(fullBook.getAuthor_id());
-        dbFullBook.setGenre_id(fullBook.getGenre_id());
-        dbFullBook.setId(fullBook.getId());
-        dbFullBook.setIsbn(fullBook.getIsbn());
-        dbFullBook.setName(fullBook.getName());
-        dbFullBook.setPublisher_id(fullBook.getPublisher_id());
-        dbFullBook.setPublishYear(fullBook.getPublishYear());
-        dbFullBook.setImage(fullBook.getImage());
-        dbFullBook.setContent(fullBook.getContent());
         fullBookRepository.saveAndFlush(fullBook);
     }
 

@@ -1,5 +1,6 @@
 package com.andruha.service.interfaces;
 
+import com.andruha.model.entity.Publisher;
 import org.springframework.stereotype.Service;
 
 /**
@@ -7,4 +8,6 @@ import org.springframework.stereotype.Service;
  */
 public interface PublisherService {
     String getPublisherNameById(long id);
+    Publisher getPublisherByName(String name);
+    Long getIdByName(String name);
 }

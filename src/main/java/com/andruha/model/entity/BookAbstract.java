@@ -12,12 +12,6 @@ public class BookAbstract {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, unique = true)
     private long id;
-    @Column(name = "author_id", nullable = false)
-    private long author_id;
-    @Column(name = "genre_id", nullable = false)
-    private long genre_id;
-    @Column(name = "publisher_id", nullable = false)
-    private long publisher_id;
     @Column(name = "name", nullable = false)
     private String name;
     @Column(name = "page_count", nullable = false)
@@ -30,10 +24,7 @@ public class BookAbstract {
     public BookAbstract() {
     }
 
-    public BookAbstract(long author_id, long genre_id, long publisher_id, String name, int pageCount, String isbn, Integer publishYear) {
-        this.author_id = author_id;
-        this.genre_id = genre_id;
-        this.publisher_id = publisher_id;
+    public BookAbstract(String name, int pageCount, String isbn, Integer publishYear) {
         this.name = name;
         this.pageCount = pageCount;
         this.isbn = isbn;
@@ -78,29 +69,6 @@ public class BookAbstract {
         this.id = id;
     }
 
-    public long getAuthor_id() {
-        return author_id;
-    }
-
-    public void setAuthor_id(long author_id) {
-        this.author_id = author_id;
-    }
-
-    public long getGenre_id() {
-        return genre_id;
-    }
-
-    public void setGenre_id(long genre_id) {
-        this.genre_id = genre_id;
-    }
-
-    public long getPublisher_id() {
-        return publisher_id;
-    }
-
-    public void setPublisher_id(long publisher_id) {
-        this.publisher_id = publisher_id;
-    }
 
     public Integer getPublishYear() {
         return publishYear;

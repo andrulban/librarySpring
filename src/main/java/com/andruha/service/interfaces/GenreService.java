@@ -11,4 +11,6 @@ import java.util.List;
 public interface GenreService {
     List<Genre> getAllGenre();
     String  getGenreNameById(long id);
+    Genre getGenreByName(String name);
+    Long getIdByName(String name);
 }

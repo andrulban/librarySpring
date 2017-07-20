@@ -20,6 +20,11 @@ public class AuthorServiceImpl implements AuthorService {
         this.authorRepository = authorRepository;
     }
 
+    @Override
+    public Author getAuthorByName(String fio) {
+        return authorRepository.findAuthorByFio(fio);
+    }
+
     /**
      * It downloads author name by id.
      * @param id
@@ -28,6 +33,11 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public String getNameById(long id) {
         Author tempAuthor = authorRepository.findOne(id);
-        return tempAuthor.getAllNames();
+        return tempAuthor.getFio();
+    }
+
+    @Override
+    public Long getIdByName(String name) {
+        return authorRepository.getIdByName(name);
     }
 }

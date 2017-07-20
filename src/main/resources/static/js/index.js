@@ -34,7 +34,7 @@ function showAllGenres() {
             $.each(data, function (index, element) {
                 var line = document.createElement('li');
                 var genreHref = document.createElement('a');
-                genreHref.innerHTML = element.genreName;
+                genreHref.innerHTML = element.nameG;
 
 
                 genreHref.onclick = function () {
@@ -72,7 +72,7 @@ function showBooks(url) {
             addHref.innerHTML = 'Add';
             addHref.setAttribute('type', 'button');
             addHref.setAttribute('id', 'button');
-            addHref.setAttribute('href', '/bookAdding')
+            addHref.setAttribute('href', '/bookAdding');
 
             box_sh.appendChild(amountOfBooks);
             box_sh.appendChild(addHref);
