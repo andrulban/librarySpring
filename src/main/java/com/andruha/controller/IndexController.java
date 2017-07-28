@@ -21,15 +21,6 @@ public class IndexController {
     }
 
     /**
-     * It shows login page.
-     * @return
-     */
-    @RequestMapping(value = "/login")
-    public String login() {
-        return "pages/index.html";
-    }
-
-    /**
      * It redirects to index.
      * @return
      */
