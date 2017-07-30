@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "authentication")
-public class User implements Serializable{
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,6 +20,8 @@ public class User implements Serializable{
     private String password;
     @Column(name = "email")
     private String email;
+    @Column(name = "permissionLevel")
+    private int permission;
 
     public User() {
     }
@@ -29,6 +31,7 @@ public class User implements Serializable{
         this.userName = user.userName;
         this.password = user.password;
         this.email = user.email;
+        this.permission = user.permission;
     }
 
     public long getId() {
@@ -61,5 +64,13 @@ public class User implements Serializable{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getPermission() {
+        return permission;
+    }
+
+    public void setPermission(int permission) {
+        this.permission = permission;
     }
 }

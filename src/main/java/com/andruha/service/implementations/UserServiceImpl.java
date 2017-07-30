@@ -43,7 +43,12 @@ public class UserServiceImpl implements UserDetailsService {
 
         @Override
         public Collection<? extends GrantedAuthority> getAuthorities() {
-            return AuthorityUtils.createAuthorityList("ROLE_USER");
+            if(this.getPermission()==1) {
+                return AuthorityUtils.createAuthorityList("ROLE_USER");
+            }
+            else {
+                return AuthorityUtils.createAuthorityList("ROLE_ADMIN");
+            }
         }
 
         @Override

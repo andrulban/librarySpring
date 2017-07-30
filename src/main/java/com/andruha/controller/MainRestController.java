@@ -12,6 +12,7 @@ import com.andruha.service.interfaces.BookService;
 import com.andruha.service.interfaces.FullBookService;
 import com.andruha.service.interfaces.ImgPdfBService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 

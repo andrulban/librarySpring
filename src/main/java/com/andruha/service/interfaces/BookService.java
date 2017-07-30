@@ -1,6 +1,7 @@
 package com.andruha.service.interfaces;
 
 import com.andruha.model.entity.Book;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
