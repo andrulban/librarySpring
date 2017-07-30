@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 
 /**
@@ -130,10 +131,10 @@ public class AddEditDeleteBookController {
     }
 
     @RequestMapping(value = "/books", method = RequestMethod.PUT)
-    public void addBook(@RequestBody FullBook fullBook, HttpServletResponse response) {
+    public void addBook(@Valid @RequestBody FullBook fullBook, HttpServletResponse response) {
         fullBook.getPublisher().setId(publisherService.getIdByName(fullBook.getPublisher().getNameP()));
         fullBook.getAuthor().setId(authorService.getIdByName(fullBook.getAuthor().getFio()));
-        fullBook.getGenre().setId(authorService.getIdByName(fullBook.getGenre().getNameG()));
+        fullBook.getGenre().setId(genreService.getIdByName(fullBook.getGenre().getNameG()));
         fullBookService.createFullBook(fullBook);
         try {
             response.sendRedirect("/main");

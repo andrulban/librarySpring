@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by andrusha on 29.07.17.
@@ -34,6 +35,14 @@ public class UserServiceImpl implements UserDetailsService {
         return new CustomUserDetails(user);
     }
 
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public User addUser(User user) {
+        return userRepository.saveAndFlush(user);
+    }
+
 
     private final static class CustomUserDetails extends User implements UserDetails {
 
@@ -43,7 +52,7 @@ public class UserServiceImpl implements UserDetailsService {
 
         @Override
         public Collection<? extends GrantedAuthority> getAuthorities() {
-            if(this.getPermission()==1) {
+            if(this.getPermission()==0) {
                 return AuthorityUtils.createAuthorityList("ROLE_USER");
             }
             else {

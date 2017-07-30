@@ -1,6 +1,8 @@
 package com.andruha.model.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Created by andrusha on 24.06.17.
@@ -13,10 +15,12 @@ public class BookAbstract {
     @Column(name = "id", nullable = false, unique = true)
     private long id;
     @Column(name = "name", nullable = false)
+    @Size(min = 3, max = 20, message = "Book name must be between 3 and 20 characters.")
     private String name;
     @Column(name = "page_count", nullable = false)
     private int pageCount;
     @Column(name = "isbn", nullable = false)
+    @Size(min = 3, max = 20, message = "Book isbn code must be between 3 and 20 characters and it must be unique.")
     private String isbn;
     @Column(name = "publish_year")
     private Integer publishYear;
