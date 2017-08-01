@@ -1,4 +1,4 @@
-package com.andruha.controller;
+package com.andruha.controller.common;
 
 import com.andruha.model.entity.FullBook;
 import com.andruha.service.implementations.GenreServiceImpl;
@@ -19,7 +19,7 @@ import java.io.IOException;
  * Created by andrusha on 20.06.17.
  */
 @Controller
-public class AddEditDeleteBookController {
+public class CUDBookController {
     private BookService bookService;
     private FullBookService fullBookService;
     private AuthorService authorService;

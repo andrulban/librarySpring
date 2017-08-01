@@ -1,4 +1,4 @@
-package com.andruha.controller;
+package com.andruha.controller.common;
 
 import com.andruha.service.interfaces.ImgPdfBService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +32,7 @@ public class ImgPdfBController {
      * @throws IOException
      */
     @RequestMapping(value = "/image/{id}", method = RequestMethod.GET)
-    public @ResponseBody
-    void image(@PathVariable long id, HttpServletResponse response) throws IOException {
+    public void image(@PathVariable long id, HttpServletResponse response) throws IOException {
         response.setContentType("image/jpeg");
         OutputStream out = response.getOutputStream();
 
@@ -46,13 +45,11 @@ public class ImgPdfBController {
      * Method which gets pdf like BLOP in DB and then shows or downloads it.
      * @param id
      * @param action
-     * @param request
      * @param response
      * @throws IOException
      */
     @RequestMapping(value = "/content/{action}", method = RequestMethod.GET)
-    public @ResponseBody
-    void content(@RequestParam(name = "id") long id, @PathVariable String action, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void content(@RequestParam(name = "id") long id, @PathVariable String action, HttpServletResponse response) throws IOException {
         response.setContentType("application/pdf");
         OutputStream out = response.getOutputStream();
 

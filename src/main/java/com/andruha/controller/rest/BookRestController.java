@@ -1,4 +1,4 @@
-package com.andruha.controller;
+package com.andruha.controller.rest;
 
 import com.andruha.model.entity.Book;
 import com.andruha.model.entity.FullBook;
@@ -27,32 +27,14 @@ import java.util.List;
  */
 
 @RestController
-public class MainRestController {
+public class BookRestController {
 
     private BookService bookService;
-    private AuthorService authorService;
-    private GenreServiceImpl genreService;
-    private PublisherServiceImpl publisherService;
     private FullBookServiceImpl fullBookService;
 
     @Autowired
     public void setBookService(BookService bookService) {
         this.bookService = bookService;
-    }
-
-    @Autowired
-    public void setAuthorService(AuthorService authorService) {
-        this.authorService = authorService;
-    }
-
-    @Autowired
-    public void setGenreService(GenreServiceImpl genreService) {
-        this.genreService = genreService;
-    }
-
-    @Autowired
-    public void setPublisherService(PublisherServiceImpl publisherService) {
-        this.publisherService = publisherService;
     }
 
     @Autowired
@@ -118,32 +100,7 @@ public class MainRestController {
         return bookService.getBookById(id);
     }
 
-    /**
-     * It downloads publisher name by its id.
-     * @param id
-     * @return
-     */
-    @RequestMapping(value = "/publisherName/{id}", method = RequestMethod.GET)
-    public String getPublisherName(@PathVariable long id){
-        return publisherService.getPublisherNameById(id);
-    }
 
-    /**
-     * It downloads author name by its id.
-     * @param id
-     * @return
-     */
-    @RequestMapping(value = "/authorName/{id}", method = RequestMethod.GET)
-    public String getAuthorName(@PathVariable long id){
-        return authorService.getNameById(id);
-    }
 
-    /**
-     * It downloads list of all genres.
-     * @return
-     */
-    @RequestMapping(value = "/genres", method = RequestMethod.GET)
-    public List<Genre> getAllGenres(){
-        return genreService.getAllGenre();
-    }
+
 }

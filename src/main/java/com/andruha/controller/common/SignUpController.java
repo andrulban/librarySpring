@@ -1,4 +1,4 @@
-package com.andruha.controller;
+package com.andruha.controller.common;
 
 import com.andruha.model.entity.User;
 import com.andruha.service.implementations.UserServiceImpl;

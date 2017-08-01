@@ -1,8 +1,3 @@
-Zadanie testowe do PGS
-Instrukcja do uruchomienia:
-1) Zainstalowac MySQL serwer na urzadzenie.
-2) Zimportowac pliki dla BD sql: src/main/resources/static/PGSDumpFiles
-3) Uruchomic jar file za pomocy konsoli. ( java -jar pgs.jar )
-4) Zeby zalogowac sie:
-   Login : user
-   Haslo : password
+This project is my first spring app. Technologies which are used there : Spring and Hibernate frameworks, Spring Boot, Spring Data, Spring Security, Maven, GIT.
+My mail - tytrachuk.andrey@gmail.com
+My LinkedIn - https://www.linkedin.com/in/andrii-tytarchuk-37799a141/
