@@ -12,9 +12,9 @@ function getBookInfo() {
             url: '/fullBooks/' + bookId,
             success: function (data) {
                 document.getElementById('id').setAttribute('value', data.id);
-                document.getElementById('author_id').setAttribute('value', data.author_id);
-                document.getElementById('genre_id').setAttribute('value', data.genre_id);
-                document.getElementById('publisher_id').setAttribute('value', data.publisher_id);
+                document.getElementById('author').setAttribute('value', data.author.fio);
+                document.getElementById('genre').setAttribute('value', data.genre.nameG);
+                document.getElementById('publisher').setAttribute('value', data.publisher.nameP);
                 document.getElementById('name').setAttribute('value', data.name);
                 document.getElementById('pageCount').setAttribute('value', data.pageCount);
                 document.getElementById('isbn').setAttribute('value', data.isbn);

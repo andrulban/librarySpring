@@ -15,7 +15,7 @@ public class IndexController {
      * It redirects to index.
      * @return
      */
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
         return "index.html";
     }

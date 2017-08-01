@@ -7,6 +7,7 @@ import com.andruha.service.interfaces.AuthorService;
 import com.andruha.service.interfaces.BookService;
 import com.andruha.service.interfaces.FullBookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,6 +61,7 @@ public class AddEditDeleteBookController {
         return "pages/editBook.html";
     }
 
+//    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/books", method = RequestMethod.POST)
     public void editBook(@RequestBody FullBook fullBook, HttpServletResponse response) {
         fullBook.getPublisher().setId(publisherService.getIdByName(fullBook.getPublisher().getNameP()));
@@ -130,6 +132,7 @@ public class AddEditDeleteBookController {
         return "pages/addBook.html";
     }
 
+//    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/books", method = RequestMethod.PUT)
     public void addBook(@Valid @RequestBody FullBook fullBook, HttpServletResponse response) {
         fullBook.getPublisher().setId(publisherService.getIdByName(fullBook.getPublisher().getNameP()));
@@ -181,16 +184,10 @@ public class AddEditDeleteBookController {
      * @param id
      * @return
      */
+//    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/books/{id}", method = RequestMethod.DELETE)
     public String deleteBookById(@PathVariable long id) {
         bookService.deleteBookById(id);
         return "index.html";
     }
-
-
-    @RequestMapping(value = "/tra", method = RequestMethod.PUT)
-    public String tra() {
-        return "index.html";
-    }
-
 }

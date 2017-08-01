@@ -123,7 +123,7 @@ public class MainRestController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/publisherName/{id}")
+    @RequestMapping(value = "/publisherName/{id}", method = RequestMethod.GET)
     public String getPublisherName(@PathVariable long id){
         return publisherService.getPublisherNameById(id);
     }
@@ -133,7 +133,7 @@ public class MainRestController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/authorName/{id}")
+    @RequestMapping(value = "/authorName/{id}", method = RequestMethod.GET)
     public String getAuthorName(@PathVariable long id){
         return authorService.getNameById(id);
     }
@@ -142,7 +142,7 @@ public class MainRestController {
      * It downloads list of all genres.
      * @return
      */
-    @RequestMapping(value = "/genres")
+    @RequestMapping(value = "/genres", method = RequestMethod.GET)
     public List<Genre> getAllGenres(){
         return genreService.getAllGenre();
     }
