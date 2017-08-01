@@ -1,6 +1,9 @@
 package com.andruha.model.entity;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 /**
  * Created by andrusha on 19.06.17.
@@ -15,7 +18,8 @@ public class Genre {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column (name = "id", nullable = false)
     private Long id;
-    @Column (name = "name", nullable = false, length = 100)
+    @Column (name = "name", nullable = false, length = 25)
+    @Size(min = 3, max = 25, message = "Fill genre name, min 3, max 25 symbols")
     private String nameG;
 
     public Genre() {

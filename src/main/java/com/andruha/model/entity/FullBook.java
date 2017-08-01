@@ -1,6 +1,9 @@
 package com.andruha.model.entity;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.Valid;
 import java.io.Serializable;
 
 /**
@@ -13,14 +16,17 @@ public class FullBook extends BookAbstract implements Serializable {
     private byte[] image;
     @Column(name = "content")
     private byte[] content;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "author_id")
+    @Valid
     private Author author;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "genre_id")
+    @Valid
     private Genre genre;
-    @ManyToOne(fetch = FetchType.EAGER,  cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER,  cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "publisher_id")
+    @Valid
     private Publisher publisher;
 
     public FullBook() {

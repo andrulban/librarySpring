@@ -13,9 +13,9 @@
 //         return window.btoa(binary);
 //     }
 //
-//     var author_id = document.getElementById('author_id').value;
-//     var genre_id = document.getElementById('genre_id').value;
-//     var publisher_id = document.getElementById('publisher_id').value;
+//     var author = document.getElementById('author').value;
+//     var genre = document.getElementById('genre').value;
+//     var publisher = document.getElementById('publisher').value;
 //     var name = document.getElementById('name').value;
 //     var pageCount = document.getElementById('pageCount').value;
 //     var isbn = document.getElementById('isbn').value;
@@ -38,9 +38,9 @@
 //
 //             var Book = {
 //                 id: 0,
-//                 author_id: author_id,
-//                 genre_id: genre_id,
-//                 publisher_id: publisher_id,
+//                 author: author,
+//                 genre: genre,
+//                 publisher: publisher,
 //                 name: name,
 //                 pageCount: pageCount,
 //                 isbn: isbn,

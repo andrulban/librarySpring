@@ -3,15 +3,19 @@ package com.andruha.controller;
 import com.andruha.model.entity.Book;
 import com.andruha.model.entity.FullBook;
 import com.andruha.model.entity.Genre;
+import com.andruha.model.entity.User;
 import com.andruha.repository.ImgPdfBRepository;
+import com.andruha.repository.UserRepository;
 import com.andruha.service.implementations.FullBookServiceImpl;
 import com.andruha.service.implementations.GenreServiceImpl;
 import com.andruha.service.implementations.PublisherServiceImpl;
+import com.andruha.service.implementations.UserServiceImpl;
 import com.andruha.service.interfaces.AuthorService;
 import com.andruha.service.interfaces.BookService;
 import com.andruha.service.interfaces.FullBookService;
 import com.andruha.service.interfaces.ImgPdfBService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -119,7 +123,7 @@ public class MainRestController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/publisherName/{id}")
+    @RequestMapping(value = "/publisherName/{id}", method = RequestMethod.GET)
     public String getPublisherName(@PathVariable long id){
         return publisherService.getPublisherNameById(id);
     }
@@ -129,7 +133,7 @@ public class MainRestController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/authorName/{id}")
+    @RequestMapping(value = "/authorName/{id}", method = RequestMethod.GET)
     public String getAuthorName(@PathVariable long id){
         return authorService.getNameById(id);
     }
@@ -138,7 +142,7 @@ public class MainRestController {
      * It downloads list of all genres.
      * @return
      */
-    @RequestMapping(value = "/genres")
+    @RequestMapping(value = "/genres", method = RequestMethod.GET)
     public List<Genre> getAllGenres(){
         return genreService.getAllGenre();
     }
